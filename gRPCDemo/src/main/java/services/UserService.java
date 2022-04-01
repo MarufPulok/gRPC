@@ -7,6 +7,39 @@ import io.grpc.stub.StreamObserver;
 import java.sql.*;
 
 public class UserService extends userGrpc.userImplBase {
+    @Override
+    public void register(User.RegisterRequest request, StreamObserver<User.APIResponse> responseObserver) {
+        String userName = request.getUserName();
+        String password = request.getPassword();
+
+        User.APIResponse.Builder response = User.APIResponse.newBuilder();
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/usersdb", "root", "15052000");
+
+            String query = "INSERT INTO users(userName,password) "
+                    + "VALUES(\"" + userName+"\",\""+password+"\")";
+
+            Statement statement = connection.createStatement();
+            statement.executeUpdate(query);
+
+            response.setResponseCode(201).setResponseMessage("registration successful!");
+
+        } catch (ClassNotFoundException e) {
+//            e.printStackTrace();
+            System.out.println("invalid");
+        } catch (SQLException e) {
+//            e.printStackTrace();
+
+            response.setResponseCode(401).setResponseMessage("User already exists.");
+        }
+
+        responseObserver.onNext(response.build());
+        responseObserver.onCompleted();
+
+
+    }
 
     @Override
     public void login(User.LoginRequest request, StreamObserver<User.APIResponse> responseObserver) {
@@ -34,9 +67,9 @@ public class UserService extends userGrpc.userImplBase {
                 b = true;
 
                 if (userName.equals(n) && password.equals(p)) {
-                    response.setResponseCode(0).setResponseMessage("SUCCESS");
+                    response.setResponseCode(0).setResponseMessage("Login Successful");
                 } else {
-                    response.setResponseCode(100).setResponseMessage("INVALID");
+                    response.setResponseCode(100).setResponseMessage("Invalid Username or password");
                 }
             }
 
