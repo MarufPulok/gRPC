@@ -2,8 +2,14 @@ syntax = "proto3";
 option java_package = "com.maruf.grpc";
 service user {
   //define an api
+  rpc register (RegisterRequest) returns(APIResponse);
   rpc login(LoginRequest) returns(APIResponse);
   rpc logout(Empty) returns(APIResponse);
+}
+
+message RegisterRequest {
+  string userName = 1;
+  string password = 2;
 }
 
 message LoginRequest {
