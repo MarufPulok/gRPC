@@ -1,13 +1,17 @@
+com\maruf\grpc\User$RegisterRequest$Builder.class
+com\maruf\grpc\User$RegisterRequestOrBuilder.class
 com\maruf\grpc\userGrpc$userMethodDescriptorSupplier.class
 client\gRPCClient.class
 com\maruf\grpc\User$Empty.class
 com\maruf\grpc\userGrpc$userBaseDescriptorSupplier.class
 com\maruf\grpc\User$APIResponse$Builder.class
 com\maruf\grpc\userGrpc$MethodHandlers.class
+com\maruf\grpc\User$RegisterRequest.class
 com\maruf\grpc\userGrpc$userFileDescriptorSupplier.class
 com\maruf\grpc\User$LoginRequest$1.class
 com\maruf\grpc\User$APIResponse.class
 com\maruf\grpc\User$EmptyOrBuilder.class
+com\maruf\grpc\User$RegisterRequest$1.class
 com\maruf\grpc\userGrpc$1.class
 com\maruf\grpc\User$Empty$1.class
 com\maruf\grpc\User$1.class
